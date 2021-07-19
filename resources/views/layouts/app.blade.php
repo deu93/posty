@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>Posty</title>
 </head>
-<body class="bg-gray-200">
+<body class="bg-gray-500">
     <nav class="py-6 bg-white flex justify-between mb-6">
         <ul class="flex item-center">
             <li>
@@ -22,18 +22,24 @@
         </ul>
 
         <ul class="flex item-center">
-            <li>
-                <a href="" class="p-3">Alex</a>
-            </li>
-            <li>
-                <a href="" class="p-3">Login</a>
-            </li>
-            <li>
-                <a href="" class="p-3">Register</a>
-            </li>  
-            <li>
-                <a href="" class="p-3">Logout</a>
-            </li> 
+            @auth
+                <li>
+                    <a href="" class="p-3">Alex</a>
+                </li>
+                <li>
+                    <a href="{{ route('logout') }}" class="p-3">Logout</a>
+                </li> 
+            @endauth
+
+            @guest
+                <li>
+                    <a href="{{ route('login') }}" class="p-3">Login</a>
+                </li>
+                <li>
+                    <a href="{{ route('register') }}" class="p-3">Register</a>
+                </li>  
+            @endguest
+            
         </ul>
     </nav>
     @yield('content')
